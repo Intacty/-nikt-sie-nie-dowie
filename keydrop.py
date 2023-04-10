@@ -20,7 +20,8 @@ options.add_argument('--no-sandbox')
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--disable-blink-features=AutomationControlled')
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
-chrome_options.add_experimental_option("prefs", {"profile.content_settings.exceptions.notifications": {"https://key-drop.com": 2}})
+prefs = {"profile.default_content_setting_values.notifications" : 2}
+options.add_experimental_option("prefs",prefs)
 
 driver = webdriver.Chrome(service=service, options=options)
 
