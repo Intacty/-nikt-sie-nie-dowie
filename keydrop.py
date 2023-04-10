@@ -40,7 +40,7 @@ while True:
     find_giveaway.click()
     print("[CONSOLE] Giveaway został znaleziony")
 
-    time.sleep(3)
+    time.sleep(5)
     join_giveaway = driver.find_element(By.CSS_SELECTOR, 'div.relative:nth-child(4) > div:nth-child(1)')
     join_giveaway.click()
     print("[CONSOLE] Dołączono do giveawaya")
