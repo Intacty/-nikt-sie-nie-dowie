@@ -7,3 +7,5 @@ Jeśli masz inną pobierz inny chrome driver odpowiedni do twojej wersji [https:
 
 3. Eksportuj cookiesy klikając niebieski przycisk do tego samego folderu co skrypt i zmień nazwę na **cookies.json** (musisz być na kluczdrop.pl)
 ![Zdjęcie](https://user-images.githubusercontent.com/67223233/230951098-f212c2d1-b7db-46c4-8727-622b2191da9a.png)
+
+4. Zainstaluj python i selenium (pip install selenium)
