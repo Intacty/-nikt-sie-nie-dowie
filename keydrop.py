@@ -35,24 +35,26 @@ while True:
     for cookie in cookies:
         driver.add_cookie(cookie)
 
+    time.sleep(3)
+
     driver.refresh()
     driver.refresh()
 
     try:
-        find_giveaway = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.relative:nth-child(5) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2)')))
+        find_giveaway = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.relative:nth-child(5) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2)')))
         find_giveaway.click()
         print("[CONSOLE] Giveaway został znaleziony")
     except:
         print("[CONSOLE] Błąd podczas znajdowania giveawaya")
 
+    time.sleep(3)
+
     try:
-        join_giveaway = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button.button')))
+        join_giveaway = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button.button')))
         join_giveaway.click()
         print("[CONSOLE] Dołączono do giveawaya - {}".format(datetime.datetime.now().strftime("%H:%M:%S")))
     except:
         print("[CONSOLE] Błąd podczas dołączania do giveawaya")
-
-    driver.execute_script("document.body.style.zoom='75%'")
 
     try:
         wait = WebDriverWait(driver, 999)
