@@ -19,7 +19,6 @@ options.add_argument('--disable-setuid-sandbox')
 options.add_argument('--no-sandbox')
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--disable-blink-features=AutomationControlled')
-options.add_argument('--load-extension={}'.format(r'C:\Users\geting\AppData\Local\Google\Chrome\User Data\Default\Extensions\mpbjkejclgfgadiemmefgebjfooflfhl\2.0.1_0'))
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 prefs = {"profile.default_content_setting_values.notifications" : 2}
 options.add_experimental_option("prefs",prefs)
