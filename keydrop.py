@@ -4,9 +4,9 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 import json
 import time
+import datetime
 
 driver_path = 'chromedriver.exe'
 
@@ -19,6 +19,7 @@ options.add_argument('--disable-setuid-sandbox')
 options.add_argument('--no-sandbox')
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--disable-blink-features=AutomationControlled')
+options.add_argument('--load-extension={}'.format(r'C:\Users\geting\AppData\Local\Google\Chrome\User Data\Default\Extensions\mpbjkejclgfgadiemmefgebjfooflfhl\2.0.1_0'))
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 prefs = {"profile.default_content_setting_values.notifications" : 2}
 options.add_experimental_option("prefs",prefs)
@@ -31,19 +32,25 @@ with open('cookies.json', 'r') as f:
 while True:
     driver.get('https://key-drop.com/en/giveaways/list')
 
-
     for cookie in cookies:
         driver.add_cookie(cookie)
 
-    time.sleep(5)
-    find_giveaway = driver.find_element(By.CSS_SELECTOR, 'div.relative:nth-child(5) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2)')
-    find_giveaway.click()
-    print("[CONSOLE] Giveaway został znaleziony")
+    driver.refresh()
+    driver.refresh()
 
-    time.sleep(7)
-    join_giveaway = driver.find_element(By.CSS_SELECTOR, 'button.button')
-    join_giveaway.click()
-    print("[CONSOLE] Dołączono do giveawaya")
+    try:
+        find_giveaway = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.relative:nth-child(5) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2)')))
+        find_giveaway.click()
+        print("[CONSOLE] Giveaway został znaleziony")
+    except:
+        print("[CONSOLE] Błąd podczas znajdowania giveawaya")
+
+    try:
+        join_giveaway = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button.button')))
+        join_giveaway.click()
+        print("[CONSOLE] Dołączono do giveawaya - {}".format(datetime.datetime.now().strftime("%H:%M:%S")))
+    except:
+        print("[CONSOLE] Błąd podczas dołączania do giveawaya")
 
     driver.execute_script("document.body.style.zoom='75%'")
 
@@ -52,7 +59,7 @@ while True:
         first_giveaway = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#giveaway-drawing-winners")))
         print("[CONSOLE] Wygrana osoba została wylosowana, wracam do strony głównej")
     except:
-        print("CSS selector not found")
+        print("[CONSOLE] CSS selector not found")
 
     driver.refresh()
     time.sleep(20)
