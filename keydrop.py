@@ -56,7 +56,7 @@ def internal_error(driver, cookies):
 
 def drawing_is_started(driver, cookies):
     try:
-        wait = WebDriverWait(driver, 3) # wait for 3 seconds
+        wait = WebDriverWait(driver, 10)
         element = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "div.relative:nth-child(5) > div:nth-child(1) > a:nth-child(1) > p:nth-child(2)")))
         print("[CONSOLE] Giveaway się już rozpoczął, wznawiam kod aby uniknąć błędów")
         driver.refresh()
